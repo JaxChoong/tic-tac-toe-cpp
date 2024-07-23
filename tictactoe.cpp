@@ -27,9 +27,16 @@ std::string drawBoard(int boxes, int boxIndex[])
 }
 
 int main(){
+  int gridInput{};
   int boxes{8};
   int boxIndex[9]= {0,1,2,3,4,5,6,7,8};
-  std::string line = drawBoard(boxes,boxIndex);
-  std::cout << line;
+  for (int i = 0; i<=8;i++)
+  { 
+    std::cout << "Enter a grid number: ";
+    std::cin >> gridInput;
+    std::string line = drawBoard(boxes,boxIndex);
+    std::cout << line  + '\n';
+    std::cout << gridInput << std::endl;
+  }
   return 0;
 }
