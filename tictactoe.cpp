@@ -1,11 +1,9 @@
 #include <iostream>
 #include <string>
 
-int main(){
-  int boxes{8};
-  int boxIndex[9]= {1,2,3,4,5,6,7,8,9};
+std::string drawBoard(int boxes, int boxIndex[])
+{
   std::string line = "-------------\n| ";
-
   for (int i = 0; i <= boxes; i++)
   {
     if (boxIndex[i]%3)
@@ -24,6 +22,14 @@ int main(){
       }
     }
   }
+  return line;
+}
+
+int main(){
+  int boxes{8};
+  int boxIndex[9]= {1,2,3,4,5,6,7,8,9};
+  std::string line = drawBoard(boxes,boxIndex);
+
   std::cout << line;
   return 0;
 }
