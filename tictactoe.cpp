@@ -49,7 +49,7 @@ bool checkWinners(std::string boxIndex[], std::string playerChoice)
   if ((boxIndex[0] == playerChoice && boxIndex[4] == playerChoice && boxIndex[8] == playerChoice) ||
       (boxIndex[2] == playerChoice && boxIndex[4] == playerChoice && boxIndex[6] == playerChoice))
   {
-      return true;
+    return true;
   }
   return false;
 }
