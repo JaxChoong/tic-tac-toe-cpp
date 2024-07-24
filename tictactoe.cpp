@@ -31,23 +31,8 @@ void changeGrid(std::string boxIndex[], int playerChoice, std::string playerIcon
   boxIndex[playerChoice] = playerIcon[0];
 }
 
-int main(){
-  int gridInput{};
-  int boxes{8};
-  std::string boxIndex[]= {"0", "1", "2", "3", "4", "5", "6", "7", "8"};
-  std::string p1Choice{};
-  std::string p2Choice{};
-  std::cout << "Player 1 Choice (X OR O): ";
-  std::cin >> p1Choice;
-  if (p1Choice == "X")
-  {
-    p2Choice = "O";
-  }
-  else{
-    p2Choice = "X";
-  }
-  std::cout << "P1: " << p1Choice << std::endl;
-  std::cout << "P2: " << p2Choice << std::endl;
+void runGame(int boxes, std::string boxIndex[], int gridInput, std::string p1Choice, std::string p2Choice)
+{
   for (int i = 0; i<=8;i++)
   { 
     std::string line = drawBoard(boxes,boxIndex);
@@ -70,5 +55,25 @@ int main(){
       changeGrid(boxIndex,gridInput,p1Choice);
     }
   }
+}
+
+int main(){
+  int gridInput{};
+  int boxes{8};
+  std::string boxIndex[]= {"0", "1", "2", "3", "4", "5", "6", "7", "8"};
+  std::string p1Choice{};
+  std::string p2Choice{};
+  std::cout << "Player 1 Choice (X OR O): ";
+  std::cin >> p1Choice;
+  if (p1Choice == "X")
+  {
+    p2Choice = "O";
+  }
+  else{
+    p2Choice = "X";
+  }
+  std::cout << "P1: " << p1Choice << std::endl;
+  std::cout << "P2: " << p2Choice << std::endl;
+  runGame(boxes,boxIndex,gridInput,p1Choice,p2Choice);
   return 0;
 }
