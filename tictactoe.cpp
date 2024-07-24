@@ -1,14 +1,14 @@
 #include <iostream>
 #include <string>
 
-std::string drawBoard(int boxes, int boxIndex[])
+std::string drawBoard(int boxes, std::string boxIndex[])
 {
   std::string line = "-------------\n| ";
   for (int i = 0; i <= boxes; i++)
   { 
     if (i == 2 || i == 5)
     {
-      line += std::to_string(boxIndex[i]) + " | \n";
+      line += boxIndex[i] + " | \n";
       if (i == 8)
       {
         line += "-------------";
@@ -19,24 +19,56 @@ std::string drawBoard(int boxes, int boxIndex[])
     }
     else
     {
-      line += std::to_string(boxIndex[i]) + " | ";
+      line += boxIndex[i] + " | ";
     }
   }
   line += "\n-------------";
   return line;
 }
 
+void changeGrid(std::string boxIndex[], int playerChoice, std::string playerIcon)
+{
+  boxIndex[playerChoice] = playerIcon[0];
+}
+
 int main(){
   int gridInput{};
   int boxes{8};
-  int boxIndex[9]= {0,1,2,3,4,5,6,7,8};
+  std::string boxIndex[]= {"0", "1", "2", "3", "4", "5", "6", "7", "8"};
+  std::string p1Choice{};
+  std::string p2Choice{};
+  std::cout << "Player 1 Choice (X OR O): ";
+  std::cin >> p1Choice;
+  if (p1Choice == "X")
+  {
+    p2Choice = "O";
+  }
+  else{
+    p2Choice = "X";
+  }
+  std::cout << "P1: " << p1Choice << std::endl;
+  std::cout << "P2: " << p2Choice << std::endl;
   for (int i = 0; i<=8;i++)
   { 
-    std::cout << "Enter a grid number: ";
-    std::cin >> gridInput;
     std::string line = drawBoard(boxes,boxIndex);
     std::cout << line  + '\n';
-    std::cout << gridInput << std::endl;
+    if ( i<1)
+    {
+      std::cout << "P1 Enter a grid number: ";
+      std::cin >> gridInput;
+      changeGrid(boxIndex,gridInput,p1Choice);
+    }
+    else if (i%2)
+    {
+      std::cout << "P2 Enter a grid number: ";
+      std::cin >> gridInput;
+      changeGrid(boxIndex,gridInput,p2Choice);
+    }
+    else{
+      std::cout << "P1 Enter a grid number: ";
+      std::cin >> gridInput;
+      changeGrid(boxIndex,gridInput,p1Choice);
+    }
   }
   return 0;
 }
