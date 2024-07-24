@@ -25,6 +25,34 @@ std::string drawBoard(int boxes, std::string boxIndex[])
   line += "\n-------------";
   return line;
 }
+bool checkWinners(std::string boxIndex[], std::string playerChoice)
+{
+  // check rows
+  for (int i = 0; i<9; i+=3)
+  {
+    if (boxIndex[i] == playerChoice && boxIndex[i+1] == playerChoice && boxIndex[i+2] == playerChoice)
+    {
+      return true;
+    }
+  }
+
+  // check coloumns
+  for (int i = 0; i<3;i++)
+  {
+    if (boxIndex[i] == playerChoice && boxIndex[i+3] == playerChoice && boxIndex[i+6] == playerChoice)
+    {
+      return true;
+    }
+  }
+
+  // check diagonals
+  if ((boxIndex[0] == playerChoice && boxIndex[4] == playerChoice && boxIndex[8] == playerChoice) ||
+      (boxIndex[2] == playerChoice && boxIndex[4] == playerChoice && boxIndex[6] == playerChoice))
+  {
+      return true;
+  }
+  return false;
+}
 
 void changeGrid(std::string boxIndex[], int playerChoice, std::string playerIcon)
 {
@@ -48,11 +76,25 @@ void runGame(int boxes, std::string boxIndex[], int gridInput, std::string p1Cho
       std::cout << "P2 Enter a grid number: ";
       std::cin >> gridInput;
       changeGrid(boxIndex,gridInput,p2Choice);
+      line = drawBoard(boxes,boxIndex);
+      std::cout << line << std::endl;
+      if(checkWinners(boxIndex,p2Choice))
+      {
+        std::cout << "Player 2 Wins! " << std::endl;
+        return;
+      }
     }
     else{
       std::cout << "P1 Enter a grid number: ";
       std::cin >> gridInput;
       changeGrid(boxIndex,gridInput,p1Choice);
+      line = drawBoard(boxes,boxIndex);
+      std::cout << line << std::endl;
+      if(checkWinners(boxIndex,p1Choice))
+      {
+        std::cout << "Player 1 Wins! " << std::endl;
+        return;
+      }
     }
   }
 }
