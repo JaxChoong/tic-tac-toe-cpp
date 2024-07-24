@@ -97,6 +97,8 @@ void runGame(int boxes, std::string boxIndex[], int gridInput, std::string p1Cho
       }
     }
   }
+  // draw 
+  std::cout << "It's a draw!" << std::endl;
 }
 
 int main(){
